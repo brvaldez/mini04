@@ -1,7 +1,28 @@
+import { toast } from "react-toastify";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
-const MovieCard = ({ movie, isWishlisted, isWatched, reaction, onToggleWishlist, onToggleWatched, onReaction }) => {
+const MovieCard = ({
+  movie,
+  isWishlisted,
+  isWatched,
+  reaction,
+  onToggleWishlist,
+  onToggleWatched,
+  onReaction,
+}) => {
   const { title, director, releasing_year, short_description, genre, age_group, imdb_rating } = movie;
+
+  const handleLike = () => {
+    const next = reaction === "like" ? null : "like";
+    onReaction(movie.title, next);
+    toast.success(next ? "Liked" : "Like removed");
+  };
+
+  const handleDislike = () => {
+    const next = reaction === "dislike" ? null : "dislike";
+    onReaction(movie.title, next);
+    toast.success(next ? "Disliked" : "Dislike removed");
+  };
 
   return (
     <div className="card bg-base-100 shadow-sm">
@@ -16,16 +37,40 @@ const MovieCard = ({ movie, isWishlisted, isWatched, reaction, onToggleWishlist,
         <p className="text-sm">{short_description}</p>
         <p className="text-xs opacity-70">IMDB: {imdb_rating}</p>
         <div className="card-actions justify-end mt-2 flex-wrap gap-1">
-          <button type="button" className="btn btn-sm btn-ghost" onClick={() => onReaction(movie.title, reaction === "like" ? null : "like")} aria-label="Like">
+          <button
+            type="button"
+            className={`btn btn-sm btn-ghost ${reaction === "like" ? "btn-active" : ""}`}
+            onClick={handleLike}
+            aria-label="Like"
+          >
             <FaThumbsUp />
           </button>
-          <button type="button" className="btn btn-sm btn-ghost" onClick={() => onReaction(movie.title, reaction === "dislike" ? null : "dislike")} aria-label="Dislike">
+          <button
+            type="button"
+            className={`btn btn-sm btn-ghost ${reaction === "dislike" ? "btn-active" : ""}`}
+            onClick={handleDislike}
+            aria-label="Dislike"
+          >
             <FaThumbsDown />
           </button>
-          <button type="button" className={`btn btn-sm ${isWishlisted ? "btn-error" : "btn-ghost"}`} onClick={() => onToggleWishlist(movie.title)}>
+          <button
+            type="button"
+            className={`btn btn-sm ${isWishlisted ? "btn-error" : "btn-ghost"}`}
+            onClick={() => {
+              onToggleWishlist(movie.title);
+              toast.success(isWishlisted ? "Removed from wishlist" : "Added to wishlist");
+            }}
+          >
             Wishlist
           </button>
-          <button type="button" className={`btn btn-sm ${isWatched ? "btn-success" : "btn-ghost"}`} onClick={() => onToggleWatched(movie.title)}>
+          <button
+            type="button"
+            className={`btn btn-sm ${isWatched ? "btn-success" : "btn-ghost"}`}
+            onClick={() => {
+              onToggleWatched(movie.title);
+              toast.success(isWatched ? "Removed from watched" : "Marked as watched");
+            }}
+          >
             Watched
           </button>
         </div>

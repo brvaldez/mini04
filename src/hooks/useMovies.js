@@ -8,9 +8,9 @@ export function useMovies() {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const res = await fetch("/movie.json");
-        if (!res.ok) throw new Error("Failed to load");
-        const data = await res.json();
+        const response = await fetch("/movie.json");
+        if (!response.ok) throw new Error("Failed to load movies");
+        const data = await response.json();
         setMovies(Array.isArray(data) ? data : []);
         setError(null);
       } catch (err) {

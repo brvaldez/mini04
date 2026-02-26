@@ -5,19 +5,22 @@ const MovieList = ({ movies, wishlist, watched, reactions, onToggleWishlist, onT
     return (
       <div className="alert alert-info">
         <span>No movie found. Try other filters or view.</span>
-        {onClearFilters && <button type="button" className="btn btn-sm" onClick={onClearFilters}>Clear filters</button>}
+        {onClearFilters && (
+          <button type="button" className="btn btn-sm" onClick={onClearFilters}>Clear filters</button>
+        )}
       </div>
     );
   }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {movies.map((m, i) => (
+      {movies.map((movie, i) => (
         <MovieCard
-          key={`${m.title}-${m.releasing_year}-${i}`}
-          movie={m}
-          isWishlisted={wishlist.has(m.title)}
-          isWatched={watched.has(m.title)}
-          reaction={reactions?.[m.title]}
+          key={`${movie.title}-${movie.releasing_year}-${i}`}
+          movie={movie}
+          isWishlisted={wishlist.has(movie.title)}
+          isWatched={watched.has(movie.title)}
+          reaction={reactions?.[movie.title]}
           onToggleWishlist={onToggleWishlist}
           onToggleWatched={onToggleWatched}
           onReaction={onReaction}
