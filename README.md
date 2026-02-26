@@ -29,29 +29,9 @@ A React + Vite movie browser that allows users to explore movies, filter and sor
 
 ---
 
-## Project Structure
----
-mini-project4/
-├── public/
-│   └── movie.json
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── MovieCard.jsx
-│   │   ├── MovieFilters.jsx
-│   │   ├── MovieList.jsx
-│   │   ├── MovieSort.jsx
-│   │   └── Navbar.jsx
-│   ├── hooks/
-│   ├── utils/
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package.json
-└── vite.config.js---
 
 Authors
 
 Yasir Dar
 
-Bruno V
+Bruno Valdez
