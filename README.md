@@ -2,6 +2,10 @@
 
 A React + Vite movie browser that allows users to explore movies, filter and sort them, and organize movies into **Wishlist** and **Watched** lists.
 
+## Live link
+
+https://mini04.netlify.app
+
 ---
 
 ##  Features
@@ -25,7 +29,7 @@ A React + Vite movie browser that allows users to explore movies, filter and sor
 - Vite
 - JavaScript
 - CSS
-- DaisyUI / TailwindCSS (if used)
+- DaisyUI / TailwindCSS
 
 ---
 
