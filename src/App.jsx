@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useMovies } from "./hooks/useMovies";
+import { useMovies } from "./hooks/useMovies";// to seperate concerns
 import { filterMovies, sortMovies } from "./utils/filterSort";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
@@ -14,21 +14,21 @@ const defaultFilters = { ageGroup: "All", genre: "All", year: "All" };
 const clearFilters = (setFilters) => () => setFilters(defaultFilters);
 
 const App = () => {
-  const { movies, loading, error } = useMovies();
+  const { movies, loading, error } = useMovies(); // custom hook 
   const [view, setView] = useState("all");
-  const [wishlist, setWishlist] = useState(() => new Set());
-  const [watched, setWatched] = useState(() => new Set());
+  const [wishlist, setWishlist] = useState(() => new Set());// state choice 
+  const [watched, setWatched] = useState(() => new Set());//Set prevents duplicates
   const [reactions, setReactions] = useState(() => ({}));
   const [filters, setFilters] = useState(defaultFilters);
   const [sortBy, setSortBy] = useState("year");
 
-  const setReaction = (title, value) => {
-    setReactions((prev) => ({ ...prev, [title]: value }));
+  const setReaction = (title, value) => {   //key title value like/dislike
+    setReactions((prev) => ({ ...prev, [title]: value })); // set reaction easy update with this and mapping 
   };
 
   const toggleWishlist = (title) => {
     setWishlist((prev) => {
-      const next = new Set(prev);
+      const next = new Set(prev);  // bcz react state should not mutate the previous value directly
       if (next.has(title)) next.delete(title);
       else next.add(title);
       return next;
