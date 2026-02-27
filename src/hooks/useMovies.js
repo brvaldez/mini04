@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 export function useMovies() {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [movies, setMovies] = useState([]);//stores movie data
+  const [loading, setLoading] = useState(true);//controls UI
+  const [error, setError] = useState(null);//handles failure
 
   useEffect(() => {
     async function fetchMovies() {
